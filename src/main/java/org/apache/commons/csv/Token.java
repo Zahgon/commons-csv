@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.csv;
 
 import static org.apache.commons.csv.Token.Type.INVALID;
@@ -31,41 +30,52 @@ final class Token {
 
     enum Type {
 
-        /** Token has no valid content, that is, is in its initialized state. */
+        /**
+         * Token has no valid content, that is, is in its initialized state.
+         */
         INVALID,
-
-        /** Token with content, at the beginning or in the middle of a line. */
+        /**
+         * Token with content, at the beginning or in the middle of a line.
+         */
         TOKEN,
-
-        /** Token (which can have content) when the end of file is reached. */
+        /**
+         * Token (which can have content) when the end of file is reached.
+         */
         EOF,
-
-        /** Token with content when the end of a line is reached. */
+        /**
+         * Token with content when the end of a line is reached.
+         */
         EORECORD,
-
-        /** Token is a comment line. */
+        /**
+         * Token is a comment line.
+         */
         COMMENT
     }
 
-    /** Length of the initial token (content-)buffer */
+    /**
+     * Length of the initial token (content-)buffer
+     */
     private static final int DEFAULT_CAPACITY = 50;
 
-    /** Token type */
+    /**
+     * Token type
+     */
     Token.Type type = INVALID;
 
-    /** The content buffer, never null. */
+    /**
+     * The content buffer, never null.
+     */
     final StringBuilder content = new StringBuilder(DEFAULT_CAPACITY);
 
-    /** Token ready flag: indicates a valid token with content (ready for the parser). */
+    /**
+     * Token ready flag: indicates a valid token with content (ready for the parser).
+     */
     boolean isReady;
 
     boolean isQuoted;
 
     void reset() {
-        content.setLength(0);
-        type = INVALID;
-        isReady = false;
-        isQuoted = false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -75,6 +85,6 @@ final class Token {
      */
     @Override
     public String toString() {
-        return type + " [" + content.toString() + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

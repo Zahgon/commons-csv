@@ -16,11 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.csv;
 
 import static org.apache.commons.csv.Token.Type.TOKEN;
-
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +46,6 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.build.AbstractStreamBuilder;
 import org.apache.commons.io.function.Uncheck;
@@ -154,9 +151,13 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
     public static class Builder extends AbstractStreamBuilder<CSVParser, Builder> {
 
         private CSVFormat format;
+
         private long byteOffset = -1;
+
         private long characterOffset;
+
         private long recordNumber = 1;
+
         private boolean trackBytes;
 
         /**
@@ -168,7 +169,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
 
         @Override
         public CSVParser get() throws IOException {
-            return new CSVParser(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -183,8 +184,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
          * @since 1.15.0
          */
         public Builder setByteOffset(final long byteOffset) {
-            this.byteOffset = byteOffset;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -195,8 +195,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
          * @see #setByteOffset(long)
          */
         public Builder setCharacterOffset(final long characterOffset) {
-            this.characterOffset = characterOffset;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -206,8 +205,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
          * @return {@code this} instance.
          */
         public Builder setFormat(final CSVFormat format) {
-            this.format = CSVFormat.copy(format);
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -217,8 +215,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
          * @return {@code this} instance.
          */
         public Builder setRecordNumber(final long recordNumber) {
-            this.recordNumber = recordNumber;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -229,13 +226,12 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
          * @since 1.13.0
          */
         public Builder setTrackBytes(final boolean trackBytes) {
-            this.trackBytes = trackBytes;
-            return asThis();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
     }
 
     final class CSVRecordIterator implements Iterator<CSVRecord> {
+
         private CSVRecord current;
 
         /**
@@ -255,35 +251,17 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
 
         @Override
         public boolean hasNext() {
-            if (isClosed()) {
-                return false;
-            }
-            if (current == null) {
-                current = getNextRecord();
-            }
-            return current != null;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public CSVRecord next() {
-            if (isClosed()) {
-                throw new NoSuchElementException("CSVParser has been closed");
-            }
-            CSVRecord next = current;
-            current = null;
-            if (next == null) {
-                // hasNext() wasn't called before
-                next = getNextRecord();
-                if (next == null) {
-                    throw new NoSuchElementException("No more CSV records available");
-                }
-            }
-            return next;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -315,7 +293,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.13.0
      */
     public static Builder builder() {
-        return new Builder();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -336,8 +314,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @throws NullPointerException if {@code file} is {@code null}.
      */
     public static CSVParser parse(final File file, final Charset charset, final CSVFormat format) throws IOException {
-        Objects.requireNonNull(file, "file");
-        return parse(file.toPath(), charset, format);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -362,9 +339,8 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @throws CSVException Thrown on invalid CSV input data.
      * @since 1.5
      */
-    public static CSVParser parse(final InputStream inputStream, final Charset charset, final CSVFormat format)
-            throws IOException {
-        return parse(new InputStreamReader(inputStream, Charsets.toCharset(charset)), format);
+    public static CSVParser parse(final InputStream inputStream, final Charset charset, final CSVFormat format) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -387,8 +363,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      */
     @SuppressWarnings("resource")
     public static CSVParser parse(final Path path, final Charset charset, final CSVFormat format) throws IOException {
-        Objects.requireNonNull(path, "path");
-        return parse(Files.newInputStream(path), charset, format);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -412,7 +387,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.5
      */
     public static CSVParser parse(final Reader reader, final CSVFormat format) throws IOException {
-        return builder().setReader(reader).setFormat(format).get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -431,8 +406,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @throws NullPointerException if {@code string} is {@code null}.
      */
     public static CSVParser parse(final String string, final CSVFormat format) throws IOException {
-        Objects.requireNonNull(string, "string");
-        return parse(new StringReader(string), format);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -459,8 +433,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      */
     @SuppressWarnings("resource")
     public static CSVParser parse(final URL url, final Charset charset, final CSVFormat format) throws IOException {
-        Objects.requireNonNull(url, "url");
-        return parse(url.openStream(), charset, format);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String headerComment;
@@ -475,7 +448,9 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
 
     private final CSVRecordIterator csvRecordIterator;
 
-    /** A record buffer for getRecord(). Grows as necessary and is reused. */
+    /**
+     * A record buffer for getRecord(). Grows as necessary and is reused.
+     */
     private final List<String> recordList = new ArrayList<>();
 
     /**
@@ -503,7 +478,8 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @param builder The source builder.
      * @throws IOException if an I/O error occurs.
      */
-    @SuppressWarnings("resource") // Lexer manages ExtendedBufferedReader.
+    // Lexer manages ExtendedBufferedReader.
+    @SuppressWarnings("resource")
     private CSVParser(final Builder builder) throws IOException {
         this.format = (builder.format != null ? builder.format : CSVFormat.DEFAULT).copy();
         this.lexer = new Lexer(format, new ExtendedBufferedReader(builder.getReader(), builder.getCharset(), builder.trackBytes));
@@ -565,12 +541,8 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
     @Deprecated
     public CSVParser(final Reader reader, final CSVFormat format, final long characterOffset, final long recordNumber) throws IOException {
         // @formatter:off
-        this(builder()
-                .setReader(reader)
-                .setFormat(Objects.requireNonNull(format, "format")) // requireNonNull for full compatibility
-                .setCharacterOffset(characterOffset)
-                .setRecordNumber(recordNumber)
-                .setCharset((Charset) null).setTrackBytes(false));
+        this(builder().setReader(reader).setFormat(// requireNonNull for full compatibility
+        Objects.requireNonNull(format, "format")).setCharacterOffset(characterOffset).setRecordNumber(recordNumber).setCharset((Charset) null).setTrackBytes(false));
         // @formatter:off
     }
 
@@ -590,13 +562,11 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      */
     @Override
     public void close() throws IOException {
-        lexer.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private Map<String, Integer> createEmptyHeaderMap() {
-        return format.getIgnoreHeaderCase() ?
-                new TreeMap<>(String.CASE_INSENSITIVE_ORDER) :
-                new LinkedHashMap<>();
+        return format.getIgnoreHeaderCase() ? new TreeMap<>(String.CASE_INSENSITIVE_ORDER) : new LinkedHashMap<>();
     }
 
     /**
@@ -644,13 +614,12 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
                     final boolean duplicatesAllowed = headerMode == DuplicateHeaderMode.ALLOW_ALL;
                     final boolean emptyDuplicatesAllowed = headerMode == DuplicateHeaderMode.ALLOW_EMPTY;
                     if (containsHeader && !duplicatesAllowed && !(blankHeader && emptyDuplicatesAllowed)) {
-                        throw new IllegalArgumentException(String.format(
-                                "The header contains a duplicate name: \"%s\" in %s. If this is valid then use CSVFormat.Builder.setDuplicateHeaderMode().",
-                                header, Arrays.toString(headerRecord)));
+                        throw new IllegalArgumentException(String.format("The header contains a duplicate name: \"%s\" in %s. If this is valid then use CSVFormat.Builder.setDuplicateHeaderMode().", header, Arrays.toString(headerRecord)));
                     }
                     observedMissing |= blankHeader;
                     if (header != null) {
-                        headerMap.put(header, Integer.valueOf(i)); // Explicit (un)boxing is intentional
+                        // Explicit (un)boxing is intentional
+                        headerMap.put(header, Integer.valueOf(i));
                         if (headerNames == null) {
                             headerNames = new ArrayList<>(headerRecord.length);
                         }
@@ -674,7 +643,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @return current line number.
      */
     public long getCurrentLineNumber() {
-        return lexer.getCurrentLineNumber();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -684,7 +653,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.5
      */
     public String getFirstEndOfLine() {
-        return lexer.getFirstEol();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -695,7 +664,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.10.0
      */
     public String getHeaderComment() {
-        return headerComment;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -711,12 +680,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @return a copy of the header map.
      */
     public Map<String, Integer> getHeaderMap() {
-        if (headers.headerMap == null) {
-            return null;
-        }
-        final Map<String, Integer> map = createEmptyHeaderMap();
-        map.putAll(headers.headerMap);
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -725,7 +689,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @return the underlying header map.
      */
     Map<String, Integer> getHeaderMapRaw() {
-        return headers.headerMap;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -741,7 +705,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.7
      */
     public List<String> getHeaderNames() {
-        return Collections.unmodifiableList(headers.headerNames);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -755,7 +719,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @return current record number
      */
     public long getRecordNumber() {
-        return recordNumber;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -774,7 +738,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      *             on parse error or input read-failure
      */
     public List<CSVRecord> getRecords() {
-        return stream().collect(Collectors.toList());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -785,7 +749,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.10.0
      */
     public String getTrailerComment() {
-        return trailerComment;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -820,7 +784,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.10.0
      */
     public boolean hasHeaderComment() {
-        return headerComment != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -833,7 +797,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.10.0
      */
     public boolean hasTrailerComment() {
-        return trailerComment != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -842,7 +806,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @return whether this parser is closed.
      */
     public boolean isClosed() {
-        return lexer.isClosed();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -852,8 +816,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      *         {@link QuoteMode#NON_NUMERIC}.
      */
     private boolean isStrictQuoteMode() {
-        return format.getQuoteMode() == QuoteMode.ALL_NON_NULL ||
-               format.getQuoteMode() == QuoteMode.NON_NUMERIC;
+        return format.getQuoteMode() == QuoteMode.ALL_NON_NULL || format.getQuoteMode() == QuoteMode.NON_NUMERIC;
     }
 
     /**
@@ -880,7 +843,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      */
     @Override
     public Iterator<CSVRecord> iterator() {
-        return csvRecordIterator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -891,49 +854,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @throws CSVException on invalid CSV input data.
      */
     CSVRecord nextRecord() throws IOException {
-        CSVRecord result = null;
-        recordList.clear();
-        StringBuilder sb = null;
-        final long startCharPosition = lexer.getCharacterPosition() + characterOffset;
-        final long startBytePosition = lexer.getBytesRead() + byteOffset;
-        do {
-            reusableToken.reset();
-            lexer.nextToken(reusableToken);
-            switch (reusableToken.type) {
-            case TOKEN:
-                addRecordValue(false);
-                break;
-            case EORECORD:
-                addRecordValue(true);
-                break;
-            case EOF:
-                if (reusableToken.isReady) {
-                    addRecordValue(true);
-                } else if (sb != null) {
-                    trailerComment = sb.toString();
-                }
-                break;
-            case INVALID:
-                throw new CSVException("(line %,d) invalid parse sequence", getCurrentLineNumber());
-            case COMMENT: // Ignored currently
-                if (sb == null) { // first comment for this record
-                    sb = new StringBuilder();
-                } else {
-                    sb.append(Constants.LF);
-                }
-                sb.append(reusableToken.content);
-                reusableToken.type = TOKEN; // Read another token
-                break;
-            default:
-                throw new CSVException("Unexpected Token type: %s", reusableToken.type);
-            }
-        } while (reusableToken.type == TOKEN);
-        if (!recordList.isEmpty()) {
-            recordNumber++;
-            result = new CSVRecord(this, recordList.toArray(Constants.EMPTY_STRING_ARRAY), Objects.toString(sb, null), recordNumber, startCharPosition,
-                    startBytePosition);
-        }
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -950,7 +871,6 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @since 1.9.0
      */
     public Stream<CSVRecord> stream() {
-        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator(), Spliterator.ORDERED), false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

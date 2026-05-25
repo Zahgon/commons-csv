@@ -16,11 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.csv;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +38,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Supplier;
-
 import org.apache.commons.codec.binary.Base64OutputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.function.IOStream;
@@ -209,14 +206,7 @@ public final class CSVFormat implements Serializable {
          * @return a copy of the builder
          */
         public static Builder create() {
-            // @formatter:off
-            return new Builder()
-                    .setDelimiter(Constants.COMMA)
-                    .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-                    .setRecordSeparator(Constants.CRLF)
-                    .setIgnoreEmptyLines(true)
-                    .setDuplicateHeaderMode(DuplicateHeaderMode.ALLOW_ALL);
-            // @formatter:on
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -226,7 +216,7 @@ public final class CSVFormat implements Serializable {
          * @return a new builder.
          */
         public static Builder create(final CSVFormat csvFormat) {
-            return new Builder(csvFormat);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         private boolean allowMissingColumnNames;
@@ -271,7 +261,9 @@ public final class CSVFormat implements Serializable {
 
         private boolean trim;
 
-        /** The maximum number of rows to process, excluding the header row. */
+        /**
+         * The maximum number of rows to process, excluding the header row.
+         */
         private long maxRows;
 
         private Builder() {
@@ -322,7 +314,7 @@ public final class CSVFormat implements Serializable {
          */
         @Override
         public CSVFormat get() {
-            return new CSVFormat(this);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -347,8 +339,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setAllowMissingColumnNames(final boolean allowMissingColumnNames) {
-            this.allowMissingColumnNames = allowMissingColumnNames;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -358,8 +349,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setAutoFlush(final boolean autoFlush) {
-            this.autoFlush = autoFlush;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -397,8 +387,7 @@ public final class CSVFormat implements Serializable {
          * @throws IllegalArgumentException thrown if the specified character is a line break
          */
         public Builder setCommentMarker(final char commentMarker) {
-            setCommentMarker(Character.valueOf(commentMarker));
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -436,11 +425,7 @@ public final class CSVFormat implements Serializable {
          * @throws IllegalArgumentException thrown if the specified character is a line break
          */
         public Builder setCommentMarker(final Character commentMarker) {
-            if (isLineBreak(commentMarker)) {
-                throw new IllegalArgumentException("The comment start marker character cannot be a line break");
-            }
-            this.commentMarker = commentMarker;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -450,7 +435,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setDelimiter(final char delimiter) {
-            return setDelimiter(String.valueOf(delimiter));
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -460,14 +445,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setDelimiter(final String delimiter) {
-            if (containsLineBreak(delimiter)) {
-                throw new IllegalArgumentException("The delimiter cannot be a line break");
-            }
-            if (delimiter.isEmpty()) {
-                throw new IllegalArgumentException("The delimiter cannot be empty");
-            }
-            this.delimiter = delimiter;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -478,8 +456,7 @@ public final class CSVFormat implements Serializable {
          * @since 1.10.0
          */
         public Builder setDuplicateHeaderMode(final DuplicateHeaderMode duplicateHeaderMode) {
-            this.duplicateHeaderMode = Objects.requireNonNull(duplicateHeaderMode, "duplicateHeaderMode");
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -490,8 +467,7 @@ public final class CSVFormat implements Serializable {
          * @throws IllegalArgumentException thrown if the specified character is a line break
          */
         public Builder setEscape(final char escapeCharacter) {
-            setEscape(Character.valueOf(escapeCharacter));
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -502,11 +478,7 @@ public final class CSVFormat implements Serializable {
          * @throws IllegalArgumentException thrown if the specified character is a line break
          */
         public Builder setEscape(final Character escapeCharacter) {
-            if (isLineBreak(escapeCharacter)) {
-                throw new IllegalArgumentException("The escape character cannot be a line break");
-            }
-            this.escapeCharacter = escapeCharacter;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -531,13 +503,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setHeader(final Class<? extends Enum<?>> headerEnum) {
-            String[] header = null;
-            if (headerEnum != null) {
-                final Enum<?>[] enumValues = headerEnum.getEnumConstants();
-                header = new String[enumValues.length];
-                Arrays.setAll(header, i -> enumValues[i].name());
-            }
-            return setHeader(header);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -561,7 +527,7 @@ public final class CSVFormat implements Serializable {
          * @throws SQLException SQLException if a database access error occurs or this method is called on a closed result set.
          */
         public Builder setHeader(final ResultSet resultSet) throws SQLException {
-            return setHeader(resultSet != null ? resultSet.getMetaData() : null);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -585,15 +551,7 @@ public final class CSVFormat implements Serializable {
          * @throws SQLException SQLException if a database access error occurs or this method is called on a closed result set.
          */
         public Builder setHeader(final ResultSetMetaData resultSetMetaData) throws SQLException {
-            String[] labels = null;
-            if (resultSetMetaData != null) {
-                final int columnCount = resultSetMetaData.getColumnCount();
-                labels = new String[columnCount];
-                for (int i = 0; i < columnCount; i++) {
-                    labels[i] = resultSetMetaData.getColumnLabel(i + 1);
-                }
-            }
-            return setHeader(labels);
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -619,8 +577,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setHeader(final String... header) {
-            this.headers = CSVFormat.clone(header);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -660,8 +617,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setHeaderComments(final Object... headerComments) {
-            this.headerComments = CSVFormat.clone(toStringArray(headerComments));
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -701,8 +657,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setHeaderComments(final String... headerComments) {
-            this.headerComments = CSVFormat.clone(headerComments);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -714,8 +669,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setIgnoreEmptyLines(final boolean ignoreEmptyLines) {
-            this.ignoreEmptyLines = ignoreEmptyLines;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -725,8 +679,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setIgnoreHeaderCase(final boolean ignoreHeaderCase) {
-            this.ignoreHeaderCase = ignoreHeaderCase;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -736,8 +689,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setIgnoreSurroundingSpaces(final boolean ignoreSurroundingSpaces) {
-            this.ignoreSurroundingSpaces = ignoreSurroundingSpaces;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -748,8 +700,7 @@ public final class CSVFormat implements Serializable {
          * @since 1.11.0
          */
         public Builder setLenientEof(final boolean lenientEof) {
-            this.lenientEof = lenientEof;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -763,8 +714,7 @@ public final class CSVFormat implements Serializable {
          * @since 1.14.0
          */
         public Builder setMaxRows(final long maxRows) {
-            this.maxRows = maxRows;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -779,9 +729,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setNullString(final String nullString) {
-            this.nullString = nullString;
-            this.quotedNullString = quoteCharacter + nullString + quoteCharacter;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -791,8 +739,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setQuote(final char quoteCharacter) {
-            setQuote(Character.valueOf(quoteCharacter));
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -802,13 +749,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setQuote(final Character quoteCharacter) {
-            if (isLineBreak(quoteCharacter)) {
-                throw new IllegalArgumentException("The quoteCharacter cannot be a line break");
-            }
-            this.quoteCharacter = quoteCharacter;
-            final Character quote = quoteCharacter != null ? quoteCharacter : Constants.DOUBLE_QUOTE_CHAR;
-            this.quotedNullString = quote + nullString + quote;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -818,8 +759,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setQuoteMode(final QuoteMode quoteMode) {
-            this.quoteMode = quoteMode;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -834,8 +774,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setRecordSeparator(final char recordSeparator) {
-            this.recordSeparator = String.valueOf(recordSeparator);
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -850,8 +789,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setRecordSeparator(final String recordSeparator) {
-            this.recordSeparator = recordSeparator;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -861,8 +799,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setSkipHeaderRecord(final boolean skipHeaderRecord) {
-            this.skipHeaderRecord = skipHeaderRecord;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -873,8 +810,7 @@ public final class CSVFormat implements Serializable {
          * @since 1.11.0
          */
         public Builder setTrailingData(final boolean trailingData) {
-            this.trailingData = trailingData;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         /**
@@ -884,10 +820,8 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setTrailingDelimiter(final boolean trailingDelimiter) {
-            this.trailingDelimiter = trailingDelimiter;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
-
 
         /**
          * Sets whether to trim leading and trailing blanks.
@@ -896,8 +830,7 @@ public final class CSVFormat implements Serializable {
          * @return This instance.
          */
         public Builder setTrim(final boolean trim) {
-            this.trim = trim;
-            return this;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -914,14 +847,12 @@ public final class CSVFormat implements Serializable {
          * @see CSVFormat#DEFAULT
          */
         Default(DEFAULT),
-
         /**
          * The EXCEL predefined format.
          *
          * @see CSVFormat#EXCEL
          */
         Excel(EXCEL),
-
         /**
          * The INFORMIX_UNLOAD predefined format.
          *
@@ -929,7 +860,6 @@ public final class CSVFormat implements Serializable {
          * @since 1.3
          */
         InformixUnload(INFORMIX_UNLOAD),
-
         /**
          * The INFORMIX_UNLOAD_CSV predefined format.
          *
@@ -937,7 +867,6 @@ public final class CSVFormat implements Serializable {
          * @since 1.3
          */
         InformixUnloadCsv(INFORMIX_UNLOAD_CSV),
-
         /**
          * The MONGODB_CSV predefined format.
          *
@@ -945,7 +874,6 @@ public final class CSVFormat implements Serializable {
          * @since 1.7
          */
         MongoDBCsv(MONGODB_CSV),
-
         /**
          * The MONGODB_TSV predefined format.
          *
@@ -953,21 +881,18 @@ public final class CSVFormat implements Serializable {
          * @since 1.7
          */
         MongoDBTsv(MONGODB_TSV),
-
         /**
          * The MYSQL predefined format.
          *
          * @see CSVFormat#MYSQL
          */
         MySQL(MYSQL),
-
         /**
          * The ORACLE predefined format.
          *
          * @see CSVFormat#ORACLE
          */
         Oracle(ORACLE),
-
         /**
          * The POSTGRESQL_CSV predefined format.
          *
@@ -975,21 +900,18 @@ public final class CSVFormat implements Serializable {
          * @since 1.5
          */
         PostgreSQLCsv(POSTGRESQL_CSV),
-
         /**
          * The POSTGRESQL_TEXT predefined format.
          *
          * @see CSVFormat#POSTGRESQL_TEXT
          */
         PostgreSQLText(POSTGRESQL_TEXT),
-
         /**
          * The RFC4180 predefined format.
          *
          * @see CSVFormat#RFC4180
          */
         RFC4180(CSVFormat.RFC4180),
-
         /**
          * The TDF predefined format.
          *
@@ -1009,7 +931,7 @@ public final class CSVFormat implements Serializable {
          * @return the format.
          */
         public CSVFormat getFormat() {
-            return format;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 
@@ -1069,14 +991,9 @@ public final class CSVFormat implements Serializable {
      *      </a>
      */
     // @formatter:off
-    public static final CSVFormat EXCEL = DEFAULT.builder()
-            .setIgnoreEmptyLines(false)
-            .setAllowMissingColumnNames(true)
-            .setTrailingData(true)
-            .setLenientEof(true)
-            .get();
-    // @formatter:on
+    public static final CSVFormat EXCEL = DEFAULT.builder().setIgnoreEmptyLines(false).setAllowMissingColumnNames(true).setTrailingData(true).setLenientEof(true).get();
 
+    // @formatter:on
     /**
      * Default <a href="https://www.ibm.com/docs/en/informix-servers/14.10?topic=statements-unload-statement">Informix CSV UNLOAD</a>
      * format used by the {@code UNLOAD TO file_name} operation.
@@ -1101,14 +1018,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.3
      */
     // @formatter:off
-    public static final CSVFormat INFORMIX_UNLOAD = DEFAULT.builder()
-            .setDelimiter(Constants.PIPE)
-            .setEscape(Constants.BACKSLASH)
-            .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-            .setRecordSeparator(Constants.LF)
-            .get();
-    // @formatter:on
+    public static final CSVFormat INFORMIX_UNLOAD = DEFAULT.builder().setDelimiter(Constants.PIPE).setEscape(Constants.BACKSLASH).setQuote(Constants.DOUBLE_QUOTE_CHAR).setRecordSeparator(Constants.LF).get();
 
+    // @formatter:on
     /**
      * Default <a href="https://www.ibm.com/docs/en/informix-servers/14.10?topic=statements-unload-statement">Informix CSV UNLOAD</a>
      * format used by the {@code UNLOAD TO file_name} operation (escaping is disabled.)
@@ -1133,13 +1045,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.3
      */
     // @formatter:off
-    public static final CSVFormat INFORMIX_UNLOAD_CSV = DEFAULT.builder()
-            .setDelimiter(Constants.COMMA)
-            .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-            .setRecordSeparator(Constants.LF)
-            .get();
-    // @formatter:on
+    public static final CSVFormat INFORMIX_UNLOAD_CSV = DEFAULT.builder().setDelimiter(Constants.COMMA).setQuote(Constants.DOUBLE_QUOTE_CHAR).setRecordSeparator(Constants.LF).get();
 
+    // @formatter:on
     /**
      * Default MongoDB CSV format used by the {@code mongoexport} operation.
      * <p>
@@ -1172,14 +1080,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.7
      */
     // @formatter:off
-    public static final CSVFormat MONGODB_CSV = DEFAULT.builder()
-            .setDelimiter(Constants.COMMA)
-            .setEscape(Constants.DOUBLE_QUOTE_CHAR)
-            .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-            .setQuoteMode(QuoteMode.MINIMAL)
-            .get();
-    // @formatter:off
+    public static final CSVFormat MONGODB_CSV = DEFAULT.builder().setDelimiter(Constants.COMMA).setEscape(Constants.DOUBLE_QUOTE_CHAR).setQuote(Constants.DOUBLE_QUOTE_CHAR).setQuoteMode(QuoteMode.MINIMAL).get();
 
+    // @formatter:off
     /**
      * Default MongoDB TSV format used by the {@code mongoexport} operation.
      * <p>
@@ -1209,15 +1112,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.7
      */
     // @formatter:off
-    public static final CSVFormat MONGODB_TSV = DEFAULT.builder()
-            .setDelimiter(Constants.TAB)
-            .setEscape(Constants.DOUBLE_QUOTE_CHAR)
-            .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-            .setQuoteMode(QuoteMode.MINIMAL)
-            .setSkipHeaderRecord(false)
-            .get();
-    // @formatter:off
+    public static final CSVFormat MONGODB_TSV = DEFAULT.builder().setDelimiter(Constants.TAB).setEscape(Constants.DOUBLE_QUOTE_CHAR).setQuote(Constants.DOUBLE_QUOTE_CHAR).setQuoteMode(QuoteMode.MINIMAL).setSkipHeaderRecord(false).get();
 
+    // @formatter:off
     /**
      * Default <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump-delimited-text.html">MySQL</a>
      * format used by the {@code SELECT INTO OUTFILE} and {@code LOAD DATA INFILE} operations.
@@ -1245,17 +1142,9 @@ public final class CSVFormat implements Serializable {
      * @see <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump-delimited-text.html">MySQL</a>
      */
     // @formatter:off
-    public static final CSVFormat MYSQL = DEFAULT.builder()
-            .setDelimiter(Constants.TAB)
-            .setEscape(Constants.BACKSLASH)
-            .setIgnoreEmptyLines(false)
-            .setQuote(null)
-            .setRecordSeparator(Constants.LF)
-            .setNullString(Constants.SQL_NULL_STRING)
-            .setQuoteMode(QuoteMode.ALL_NON_NULL)
-            .get();
-    // @formatter:off
+    public static final CSVFormat MYSQL = DEFAULT.builder().setDelimiter(Constants.TAB).setEscape(Constants.BACKSLASH).setIgnoreEmptyLines(false).setQuote(null).setRecordSeparator(Constants.LF).setNullString(Constants.SQL_NULL_STRING).setQuoteMode(QuoteMode.ALL_NON_NULL).get();
 
+    // @formatter:off
     /**
      * Default
      * <a href="https://docs.oracle.com/en/database/oracle/oracle-database/23/sutil/oracle-sql-loader-control-file-contents.html#GUID-D1762699-8154-40F6-90DE-EFB8EB6A9AB0">Oracle</a>
@@ -1287,18 +1176,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.6
      */
     // @formatter:off
-    public static final CSVFormat ORACLE = DEFAULT.builder()
-            .setDelimiter(Constants.COMMA)
-            .setEscape(Constants.BACKSLASH)
-            .setIgnoreEmptyLines(false)
-            .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-            .setNullString(Constants.SQL_NULL_STRING)
-            .setTrim(true)
-            .setRecordSeparator(System.lineSeparator())
-            .setQuoteMode(QuoteMode.MINIMAL)
-            .get();
-    // @formatter:off
+    public static final CSVFormat ORACLE = DEFAULT.builder().setDelimiter(Constants.COMMA).setEscape(Constants.BACKSLASH).setIgnoreEmptyLines(false).setQuote(Constants.DOUBLE_QUOTE_CHAR).setNullString(Constants.SQL_NULL_STRING).setTrim(true).setRecordSeparator(System.lineSeparator()).setQuoteMode(QuoteMode.MINIMAL).get();
 
+    // @formatter:off
     /**
      * Default <a href="https://www.postgresql.org/docs/current/static/sql-copy.html">PostgreSQL CSV</a> format used by the {@code COPY} operation.
      *
@@ -1326,17 +1206,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.5
      */
     // @formatter:off
-    public static final CSVFormat POSTGRESQL_CSV = DEFAULT.builder()
-            .setDelimiter(Constants.COMMA)
-            .setEscape(null)
-            .setIgnoreEmptyLines(false)
-            .setQuote(Constants.DOUBLE_QUOTE_CHAR)
-            .setRecordSeparator(Constants.LF)
-            .setNullString(Constants.EMPTY)
-            .setQuoteMode(QuoteMode.ALL_NON_NULL)
-            .get();
-    // @formatter:off
+    public static final CSVFormat POSTGRESQL_CSV = DEFAULT.builder().setDelimiter(Constants.COMMA).setEscape(null).setIgnoreEmptyLines(false).setQuote(Constants.DOUBLE_QUOTE_CHAR).setRecordSeparator(Constants.LF).setNullString(Constants.EMPTY).setQuoteMode(QuoteMode.ALL_NON_NULL).get();
 
+    // @formatter:off
     /**
      * Default <a href="https://www.postgresql.org/docs/current/static/sql-copy.html">PostgreSQL Text</a> format used by the {@code COPY} operation.
      *
@@ -1364,17 +1236,9 @@ public final class CSVFormat implements Serializable {
      * @since 1.5
      */
     // @formatter:off
-    public static final CSVFormat POSTGRESQL_TEXT = DEFAULT.builder()
-            .setDelimiter(Constants.TAB)
-            .setEscape(Constants.BACKSLASH)
-            .setIgnoreEmptyLines(false)
-            .setQuote(null)
-            .setRecordSeparator(Constants.LF)
-            .setNullString(Constants.SQL_NULL_STRING)
-            .setQuoteMode(QuoteMode.ALL_NON_NULL)
-            .get();
-    // @formatter:off
+    public static final CSVFormat POSTGRESQL_TEXT = DEFAULT.builder().setDelimiter(Constants.TAB).setEscape(Constants.BACKSLASH).setIgnoreEmptyLines(false).setQuote(null).setRecordSeparator(Constants.LF).setNullString(Constants.SQL_NULL_STRING).setQuoteMode(QuoteMode.ALL_NON_NULL).get();
 
+    // @formatter:off
     /**
      * Comma separated format as defined by <a href="https://tools.ietf.org/html/rfc4180">RFC 4180</a>.
      *
@@ -1410,12 +1274,9 @@ public final class CSVFormat implements Serializable {
      * @see <a href="https://en.wikipedia.org/wiki/Tab-separated_values">TDF</a>
      */
     // @formatter:off
-    public static final CSVFormat TDF = DEFAULT.builder()
-            .setDelimiter(Constants.TAB)
-            .setIgnoreSurroundingSpaces(true)
-            .get();
-    // @formatter:on
+    public static final CSVFormat TDF = DEFAULT.builder().setDelimiter(Constants.TAB).setIgnoreSurroundingSpaces(true).get();
 
+    // @formatter:on
     /**
      * Null-safe clone of an array.
      *
@@ -1425,7 +1286,7 @@ public final class CSVFormat implements Serializable {
      */
     @SafeVarargs
     static <T> T[] clone(final T... values) {
-        return values == null ? null : values.clone();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1455,11 +1316,11 @@ public final class CSVFormat implements Serializable {
      * @return a copy of the given instance or null if the input is null.
      */
     static CSVFormat copy(final CSVFormat format) {
-        return format != null ? format.copy() : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static boolean isBlank(final String value) {
-        return value == null || value.trim().isEmpty();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1479,15 +1340,20 @@ public final class CSVFormat implements Serializable {
      * @return true if {@code c} is a line break character (and not null).
      */
     private static boolean isLineBreak(final Character c) {
-        return c != null && isLineBreak(c.charValue()); // Explicit (un)boxing is intentional
+        // Explicit (un)boxing is intentional
+        return c != null && isLineBreak(c.charValue());
     }
 
-    /** Same test as in as {@link String#trim()}. */
+    /**
+     * Same test as in as {@link String#trim()}.
+     */
     private static boolean isTrimChar(final char ch) {
         return ch <= Constants.SP;
     }
 
-    /** Same test as in as {@link String#trim()}. */
+    /**
+     * Same test as in as {@link String#trim()}.
+     */
     private static boolean isTrimChar(final CharSequence charSequence, final int pos) {
         return isTrimChar(charSequence.charAt(pos));
     }
@@ -1509,33 +1375,15 @@ public final class CSVFormat implements Serializable {
      * @see #TDF
      */
     public static CSVFormat newFormat(final char delimiter) {
-        return new CSVFormat(new Builder().setDelimiter(delimiter));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static String[] toStringArray(final Object[] values) {
-        if (values == null) {
-            return null;
-        }
-        final String[] strings = new String[values.length];
-        Arrays.setAll(strings, i -> Objects.toString(values[i], null));
-        return strings;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     static CharSequence trim(final CharSequence charSequence) {
-        if (charSequence instanceof String) {
-            return ((String) charSequence).trim();
-        }
-        final int count = charSequence.length();
-        int len = count;
-        int pos = 0;
-
-        while (pos < len && isTrimChar(charSequence, pos)) {
-            pos++;
-        }
-        while (pos < len && isTrimChar(charSequence, len - 1)) {
-            len--;
-        }
-        return pos > 0 || len < count ? charSequence.subSequence(pos, len) : charSequence;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1546,73 +1394,117 @@ public final class CSVFormat implements Serializable {
      * @since 1.2
      */
     public static CSVFormat valueOf(final String format) {
-        return CSVFormat.Predefined.valueOf(format).getFormat();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** How duplicate headers are handled. */
+    /**
+     * How duplicate headers are handled.
+     */
     private final DuplicateHeaderMode duplicateHeaderMode;
 
-    /** Whether missing column names are allowed when parsing the header line. */
+    /**
+     * Whether missing column names are allowed when parsing the header line.
+     */
     private final boolean allowMissingColumnNames;
 
-    /** Whether to flush on close. */
+    /**
+     * Whether to flush on close.
+     */
     private final boolean autoFlush;
 
-    /** Set to null if commenting is disabled. */
+    /**
+     * Set to null if commenting is disabled.
+     */
     private final Character commentMarker;
 
-    /** The character delimiting the values (typically ";", "," or "\t"). */
+    /**
+     * The character delimiting the values (typically ";", "," or "\t").
+     */
     private final String delimiter;
 
-    /** Set to null if escaping is disabled. */
+    /**
+     * Set to null if escaping is disabled.
+     */
     private final Character escapeCharacter;
 
-    /** Array of header column names. */
+    /**
+     * Array of header column names.
+     */
     private final String[] headers;
 
-    /** Array of header comment lines. */
+    /**
+     * Array of header comment lines.
+     */
     private final String[] headerComments;
 
-    /** Whether empty lines between records are ignored when parsing input. */
+    /**
+     * Whether empty lines between records are ignored when parsing input.
+     */
     private final boolean ignoreEmptyLines;
 
-    /** Should ignore header names case. */
+    /**
+     * Should ignore header names case.
+     */
     private final boolean ignoreHeaderCase;
 
-    /** Should leading/trailing spaces be ignored around values?. */
+    /**
+     * Should leading/trailing spaces be ignored around values?.
+     */
     private final boolean ignoreSurroundingSpaces;
 
-    /** The string to be used for null values. */
+    /**
+     * The string to be used for null values.
+     */
     private final String nullString;
 
-    /** Set to null if quoting is disabled. */
+    /**
+     * Set to null if quoting is disabled.
+     */
     private final Character quoteCharacter;
 
-    /** Set to {@code quoteCharacter + nullString + quoteCharacter} */
+    /**
+     * Set to {@code quoteCharacter + nullString + quoteCharacter}
+     */
     private final String quotedNullString;
 
-    /** The quote policy output fields. */
+    /**
+     * The quote policy output fields.
+     */
     private final QuoteMode quoteMode;
 
-    /** For output. */
+    /**
+     * For output.
+     */
     private final String recordSeparator;
 
-    /** Whether to skip the header record. */
+    /**
+     * Whether to skip the header record.
+     */
     private final boolean skipHeaderRecord;
 
-    /** Whether reading end-of-file is allowed even when input is malformed, helps Excel compatibility. */
+    /**
+     * Whether reading end-of-file is allowed even when input is malformed, helps Excel compatibility.
+     */
     private final boolean lenientEof;
 
-    /** Whether reading trailing data is allowed in records, helps Excel compatibility. */
+    /**
+     * Whether reading trailing data is allowed in records, helps Excel compatibility.
+     */
     private final boolean trailingData;
 
-    /** Whether to add a trailing delimiter. */
+    /**
+     * Whether to add a trailing delimiter.
+     */
     private final boolean trailingDelimiter;
 
-    /** Whether to trim leading and trailing blanks. */
+    /**
+     * Whether to trim leading and trailing blanks.
+     */
     private final boolean trim;
 
-    /** The maximum number of rows to process, excluding the header row. */
+    /**
+     * The maximum number of rows to process, excluding the header row.
+     */
     private final long maxRows;
 
     private CSVFormat(final Builder builder) {
@@ -1663,7 +1555,7 @@ public final class CSVFormat implements Serializable {
      * @return a new Builder.
      */
     public Builder builder() {
-        return Builder.create(this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1672,35 +1564,17 @@ public final class CSVFormat implements Serializable {
      * @return a copy of this instance.
      */
     CSVFormat copy() {
-        return builder().get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CSVFormat other = (CSVFormat) obj;
-        return allowMissingColumnNames == other.allowMissingColumnNames && autoFlush == other.autoFlush &&
-                Objects.equals(commentMarker, other.commentMarker) && Objects.equals(delimiter, other.delimiter) &&
-                duplicateHeaderMode == other.duplicateHeaderMode && Objects.equals(escapeCharacter, other.escapeCharacter) &&
-                Arrays.equals(headerComments, other.headerComments) && Arrays.equals(headers, other.headers) &&
-                ignoreEmptyLines == other.ignoreEmptyLines && ignoreHeaderCase == other.ignoreHeaderCase &&
-                ignoreSurroundingSpaces == other.ignoreSurroundingSpaces && lenientEof == other.lenientEof && maxRows == other.maxRows &&
-                Objects.equals(nullString, other.nullString) && Objects.equals(quoteCharacter, other.quoteCharacter) && quoteMode == other.quoteMode &&
-                Objects.equals(quotedNullString, other.quotedNullString) && Objects.equals(recordSeparator, other.recordSeparator) &&
-                skipHeaderRecord == other.skipHeaderRecord && trailingData == other.trailingData && trailingDelimiter == other.trailingDelimiter &&
-                trim == other.trim;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void escape(final char c, final Appendable appendable) throws IOException {
-        append(escapeCharacter.charValue(), appendable); // Explicit (un)boxing is intentional
+        // Explicit (un)boxing is intentional
+        append(escapeCharacter.charValue(), appendable);
         append(c, appendable);
     }
 
@@ -1711,7 +1585,7 @@ public final class CSVFormat implements Serializable {
      * @return the formatted values.
      */
     public String format(final Object... values) {
-        return Uncheck.get(() -> format_(values));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private String format_(final Object... values) throws IOException {
@@ -1742,7 +1616,7 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} if missing column names are allowed when parsing the header line, {@code false} to throw an {@link IllegalArgumentException}.
      */
     public boolean getAllowMissingColumnNames() {
-        return allowMissingColumnNames;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1752,7 +1626,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.6
      */
     public boolean getAutoFlush() {
-        return autoFlush;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1789,7 +1663,7 @@ public final class CSVFormat implements Serializable {
      * @return the comment start marker, may be {@code null}
      */
     public Character getCommentMarker() {
-        return commentMarker;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1809,7 +1683,7 @@ public final class CSVFormat implements Serializable {
      * @return the delimiter.
      */
     char[] getDelimiterCharArray() {
-        return delimiter.toCharArray();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1819,7 +1693,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.9.0
      */
     public String getDelimiterString() {
-        return delimiter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1829,7 +1703,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.10.0
      */
     public DuplicateHeaderMode getDuplicateHeaderMode() {
-        return duplicateHeaderMode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1838,7 +1712,7 @@ public final class CSVFormat implements Serializable {
      * @return the escape character, may be {@code 0}
      */
     char getEscapeChar() {
-        return escapeCharacter != null ? escapeCharacter.charValue() : 0; // Explicit (un)boxing is intentional
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1847,7 +1721,7 @@ public final class CSVFormat implements Serializable {
      * @return the escape character, may be {@code null}
      */
     public Character getEscapeCharacter() {
-        return escapeCharacter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1856,7 +1730,7 @@ public final class CSVFormat implements Serializable {
      * @return a copy of the header array; {@code null} if disabled, the empty array if to be read from the file
      */
     public String[] getHeader() {
-        return headers != null ? headers.clone() : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1893,7 +1767,7 @@ public final class CSVFormat implements Serializable {
      * @return a copy of the header comment array; {@code null} if disabled.
      */
     public String[] getHeaderComments() {
-        return headerComments != null ? headerComments.clone() : null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1902,7 +1776,7 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} if empty lines between records are ignored, {@code false} if they are turned into empty records.
      */
     public boolean getIgnoreEmptyLines() {
-        return ignoreEmptyLines;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1912,7 +1786,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.3
      */
     public boolean getIgnoreHeaderCase() {
-        return ignoreHeaderCase;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1921,7 +1795,7 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} if spaces around values are ignored, {@code false} if they are treated as part of the value.
      */
     public boolean getIgnoreSurroundingSpaces() {
-        return ignoreSurroundingSpaces;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1931,7 +1805,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.11.0
      */
     public boolean getLenientEof() {
-        return lenientEof;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1944,7 +1818,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.14.0
      */
     public long getMaxRows() {
-        return maxRows;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1957,7 +1831,7 @@ public final class CSVFormat implements Serializable {
      * @return the String to convert to and from {@code null}. No substitution occurs if {@code null}
      */
     public String getNullString() {
-        return nullString;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1966,7 +1840,7 @@ public final class CSVFormat implements Serializable {
      * @return the quoteChar character, may be {@code null}
      */
     public Character getQuoteCharacter() {
-        return quoteCharacter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1975,7 +1849,7 @@ public final class CSVFormat implements Serializable {
      * @return the quote policy
      */
     public QuoteMode getQuoteMode() {
-        return quoteMode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1984,7 +1858,7 @@ public final class CSVFormat implements Serializable {
      * @return the record separator
      */
     public String getRecordSeparator() {
-        return recordSeparator;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -1993,7 +1867,7 @@ public final class CSVFormat implements Serializable {
      * @return whether to skip the header record.
      */
     public boolean getSkipHeaderRecord() {
-        return skipHeaderRecord;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2003,7 +1877,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.11.0
      */
     public boolean getTrailingData() {
-        return trailingData;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2013,7 +1887,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.3
      */
     public boolean getTrailingDelimiter() {
-        return trailingDelimiter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2022,19 +1896,12 @@ public final class CSVFormat implements Serializable {
      * @return whether to trim leading and trailing blanks.
      */
     public boolean getTrim() {
-        return trim;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + Arrays.hashCode(headerComments);
-        result = prime * result + Arrays.hashCode(headers);
-        result = prime * result + Objects.hash(allowMissingColumnNames, autoFlush, commentMarker, delimiter, duplicateHeaderMode, escapeCharacter,
-                ignoreEmptyLines, ignoreHeaderCase, ignoreSurroundingSpaces, lenientEof, maxRows, nullString, quoteCharacter, quoteMode, quotedNullString,
-                recordSeparator, skipHeaderRecord, trailingData, trailingDelimiter, trim);
-        return result;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2045,7 +1912,7 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} is comments are supported, {@code false} otherwise
      */
     public boolean isCommentMarkerSet() {
-        return commentMarker != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2080,7 +1947,7 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} if escapes are processed
      */
     public boolean isEscapeCharacterSet() {
-        return escapeCharacter != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2089,7 +1956,7 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} if a nullString is defined
      */
     public boolean isNullStringSet() {
-        return nullString != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2098,11 +1965,11 @@ public final class CSVFormat implements Serializable {
      * @return {@code true} if a quoteChar is defined
      */
     public boolean isQuoteCharacterSet() {
-        return quoteCharacter != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     <T> IOStream<T> limit(final IOStream<T> stream) {
-        return useMaxRows() ? stream.limit(getMaxRows()) : stream;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2118,7 +1985,7 @@ public final class CSVFormat implements Serializable {
      * @throws CSVException Thrown on invalid input.
      */
     public CSVParser parse(final Reader reader) throws IOException {
-        return CSVParser.builder().setReader(reader).setFormat(this).get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2133,7 +2000,7 @@ public final class CSVFormat implements Serializable {
      * @throws IOException thrown if the optional header cannot be printed.
      */
     public CSVPrinter print(final Appendable out) throws IOException {
-        return new CSVPrinter(out, this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2150,7 +2017,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.5
      */
     public CSVPrinter print(final File out, final Charset charset) throws IOException {
-        return print(out.toPath(), charset);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void print(final InputStream inputStream, final Appendable out, final boolean newRecord) throws IOException {
@@ -2161,7 +2028,8 @@ public final class CSVFormat implements Serializable {
         }
         final boolean quoteCharacterSet = isQuoteCharacterSet();
         if (quoteCharacterSet) {
-            append(getQuoteCharacter().charValue(), out); // Explicit (un)boxing is intentional
+            // Explicit (un)boxing is intentional
+            append(getQuoteCharacter().charValue(), out);
         }
         // Stream the input to the output without reading or holding the whole value in memory.
         // AppendableOutputStream cannot "close" an Appendable.
@@ -2169,7 +2037,8 @@ public final class CSVFormat implements Serializable {
             IOUtils.copy(inputStream, outputStream);
         }
         if (quoteCharacterSet) {
-            append(getQuoteCharacter().charValue(), out); // Explicit (un)boxing is intentional
+            // Explicit (un)boxing is intentional
+            append(getQuoteCharacter().charValue(), out);
         }
     }
 
@@ -2184,31 +2053,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.4
      */
     public synchronized void print(final Object value, final Appendable out, final boolean newRecord) throws IOException {
-        // null values are considered empty
-        // Only call CharSequence.toString() if you have to, helps GC-free use cases.
-        CharSequence charSequence;
-        if (value == null) {
-            // https://issues.apache.org/jira/browse/CSV-203
-            if (null == nullString) {
-                charSequence = Constants.EMPTY;
-            } else if (QuoteMode.ALL == quoteMode) {
-                charSequence = quotedNullString;
-            } else {
-                charSequence = nullString;
-            }
-        } else if (value instanceof CharSequence) {
-            charSequence = (CharSequence) value;
-        } else if (value instanceof Reader) {
-            print((Reader) value, out, newRecord);
-            return;
-        } else if (value instanceof InputStream) {
-            print((InputStream) value, out, newRecord);
-            return;
-        } else {
-            charSequence = value.toString();
-        }
-        charSequence = getTrim() ? trim(charSequence) : charSequence;
-        print(value, charSequence, out, newRecord);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private synchronized void print(final Object object, final CharSequence value, final Appendable out, final boolean newRecord) throws IOException {
@@ -2244,7 +2089,7 @@ public final class CSVFormat implements Serializable {
      */
     @SuppressWarnings("resource")
     public CSVPrinter print(final Path out, final Charset charset) throws IOException {
-        return print(Files.newBufferedWriter(out, charset));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void print(final Reader reader, final Appendable out, final boolean newRecord) throws IOException {
@@ -2275,7 +2120,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.5
      */
     public CSVPrinter printer() throws IOException {
-        return new CSVPrinter(System.out, this);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2286,12 +2131,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.4
      */
     public synchronized void println(final Appendable appendable) throws IOException {
-        if (getTrailingDelimiter()) {
-            append(getDelimiterString(), appendable);
-        }
-        if (recordSeparator != null) {
-            append(recordSeparator, appendable);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2308,10 +2148,7 @@ public final class CSVFormat implements Serializable {
      * @since 1.4
      */
     public synchronized void printRecord(final Appendable appendable, final Object... values) throws IOException {
-        for (int i = 0; i < values.length; i++) {
-            print(values[i], appendable, i == 0);
-        }
-        println(appendable);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /*
@@ -2346,11 +2183,11 @@ public final class CSVFormat implements Serializable {
                         escape(charSeq.charAt(pos), appendable);
                     }
                 }
-                start = pos + 1; // start on the current char after this one
+                // start on the current char after this one
+                start = pos + 1;
             }
             pos++;
         }
-
         // write last segment
         if (pos > start) {
             appendable.append(charSeq, start, pos);
@@ -2363,7 +2200,8 @@ public final class CSVFormat implements Serializable {
     private void printWithEscapes(final Reader reader, final Appendable appendable) throws IOException {
         int start = 0;
         int pos = 0;
-        @SuppressWarnings("resource") // Temp reader on input reader.
+        // Temp reader on input reader.
+        @SuppressWarnings("resource")
         final ExtendedBufferedReader bufferedReader = new ExtendedBufferedReader(reader);
         final char[] delimArray = getDelimiterCharArray();
         final int delimLength = delimArray.length;
@@ -2397,7 +2235,8 @@ public final class CSVFormat implements Serializable {
                         escape((char) bufferedReader.read(), appendable);
                     }
                 }
-                start = pos + 1; // start on the current char after this one
+                // start on the current char after this one
+                start = pos + 1;
             }
             pos++;
         }
@@ -2418,7 +2257,8 @@ public final class CSVFormat implements Serializable {
         final int len = charSeq.length();
         final char[] delim = getDelimiterCharArray();
         final int delimLength = delim.length;
-        final char quoteChar = getQuoteCharacter().charValue(); // Explicit (un)boxing is intentional
+        // Explicit (un)boxing is intentional
+        final char quoteChar = getQuoteCharacter().charValue();
         // If escape char not specified, default to the quote char
         // This avoids having to keep checking whether there is an escape character
         // at the cost of checking against quote twice
@@ -2427,63 +2267,62 @@ public final class CSVFormat implements Serializable {
         if (quoteModePolicy == null) {
             quoteModePolicy = QuoteMode.MINIMAL;
         }
-        switch (quoteModePolicy) {
-        case ALL:
-        case ALL_NON_NULL:
-            quote = true;
-            break;
-        case NON_NUMERIC:
-            quote = !(object instanceof Number);
-            break;
-        case NONE:
-            // Use the existing escaping code
-            printWithEscapes(charSeq, out);
-            return;
-        case MINIMAL:
-            if (len <= 0) {
-                // Always quote an empty token that is the first
-                // on the line, as it may be the only thing on the
-                // line. If it were not quoted in that case,
-                // an empty line has no tokens.
-                if (newRecord) {
-                    quote = true;
-                }
-            } else {
-                char c = charSeq.charAt(pos);
-                if (c <= Constants.COMMENT) {
-                    // Some other chars at the start of a value caused the parser to fail, so for now
-                    // encapsulate if we start in anything less than '#'. We are being conservative
-                    // by including the default comment char too.
-                    quote = true;
-                } else {
-                    while (pos < len) {
-                        c = charSeq.charAt(pos);
-                        if (c == Constants.LF || c == Constants.CR || c == quoteChar || c == escapeChar || isDelimiter(c, charSeq, pos, delim, delimLength)) {
-                            quote = true;
-                            break;
-                        }
-                        pos++;
-                    }
-
-                    if (!quote) {
-                        pos = len - 1;
-                        c = charSeq.charAt(pos);
-                        // Some other chars at the end caused the parser to fail, so for now
-                        // encapsulate if we end in anything less than ' '
-                        if (isTrimChar(c)) {
-                            quote = true;
-                        }
-                    }
-                }
-            }
-            if (!quote) {
-                // No encapsulation needed - write out the original value
-                out.append(charSeq, start, len);
+        switch(quoteModePolicy) {
+            case ALL:
+            case ALL_NON_NULL:
+                quote = true;
+                break;
+            case NON_NUMERIC:
+                quote = !(object instanceof Number);
+                break;
+            case NONE:
+                // Use the existing escaping code
+                printWithEscapes(charSeq, out);
                 return;
-            }
-            break;
-        default:
-            throw new IllegalStateException("Unexpected Quote value: " + quoteModePolicy);
+            case MINIMAL:
+                if (len <= 0) {
+                    // Always quote an empty token that is the first
+                    // on the line, as it may be the only thing on the
+                    // line. If it were not quoted in that case,
+                    // an empty line has no tokens.
+                    if (newRecord) {
+                        quote = true;
+                    }
+                } else {
+                    char c = charSeq.charAt(pos);
+                    if (c <= Constants.COMMENT) {
+                        // Some other chars at the start of a value caused the parser to fail, so for now
+                        // encapsulate if we start in anything less than '#'. We are being conservative
+                        // by including the default comment char too.
+                        quote = true;
+                    } else {
+                        while (pos < len) {
+                            c = charSeq.charAt(pos);
+                            if (c == Constants.LF || c == Constants.CR || c == quoteChar || c == escapeChar || isDelimiter(c, charSeq, pos, delim, delimLength)) {
+                                quote = true;
+                                break;
+                            }
+                            pos++;
+                        }
+                        if (!quote) {
+                            pos = len - 1;
+                            c = charSeq.charAt(pos);
+                            // Some other chars at the end caused the parser to fail, so for now
+                            // encapsulate if we end in anything less than ' '
+                            if (isTrimChar(c)) {
+                                quote = true;
+                            }
+                        }
+                    }
+                }
+                if (!quote) {
+                    // No encapsulation needed - write out the original value
+                    out.append(charSeq, start, len);
+                    return;
+                }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected Quote value: " + quoteModePolicy);
         }
         if (!quote) {
             // No encapsulation needed - write out the original value
@@ -2499,8 +2338,10 @@ public final class CSVFormat implements Serializable {
             if (c == quoteChar || c == escapeChar) {
                 // write out the chunk up until this point
                 out.append(charSeq, start, pos);
-                out.append(escapeChar); // now output the escape
-                start = pos; // and restart with the matched char
+                // now output the escape
+                out.append(escapeChar);
+                // and restart with the matched char
+                start = pos;
             }
             pos++;
         }
@@ -2521,7 +2362,8 @@ public final class CSVFormat implements Serializable {
             printWithEscapes(reader, appendable);
             return;
         }
-        final char quote = getQuoteCharacter().charValue(); // Explicit (un)boxing is intentional
+        // Explicit (un)boxing is intentional
+        final char quote = getQuoteCharacter().charValue();
         // (1) Append opening quote
         append(quote, appendable);
         // (2) Append Reader contents, doubling quotes
@@ -2538,63 +2380,19 @@ public final class CSVFormat implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("Delimiter=<").append(delimiter).append('>');
-        if (isEscapeCharacterSet()) {
-            sb.append(Constants.SP);
-            sb.append("Escape=<").append(escapeCharacter).append('>');
-        }
-        if (isQuoteCharacterSet()) {
-            sb.append(Constants.SP);
-            sb.append("QuoteChar=<").append(quoteCharacter).append('>');
-        }
-        if (quoteMode != null) {
-            sb.append(Constants.SP);
-            sb.append("QuoteMode=<").append(quoteMode).append('>');
-        }
-        if (isCommentMarkerSet()) {
-            sb.append(Constants.SP);
-            sb.append("CommentStart=<").append(commentMarker).append('>');
-        }
-        if (isNullStringSet()) {
-            sb.append(Constants.SP);
-            sb.append("NullString=<").append(nullString).append('>');
-        }
-        if (recordSeparator != null) {
-            sb.append(Constants.SP);
-            sb.append("RecordSeparator=<").append(recordSeparator).append('>');
-        }
-        if (getIgnoreEmptyLines()) {
-            sb.append(" EmptyLines:ignored");
-        }
-        if (getIgnoreSurroundingSpaces()) {
-            sb.append(" SurroundingSpaces:ignored");
-        }
-        if (getIgnoreHeaderCase()) {
-            sb.append(" IgnoreHeaderCase:ignored");
-        }
-        sb.append(" SkipHeaderRecord:").append(skipHeaderRecord);
-        if (headerComments != null) {
-            sb.append(Constants.SP);
-            sb.append("HeaderComments:").append(Arrays.toString(headerComments));
-        }
-        if (headers != null) {
-            sb.append(Constants.SP);
-            sb.append("Header:").append(Arrays.toString(headers));
-        }
-        return sb.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String trim(final String value) {
-        return getTrim() ? value.trim() : value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean useMaxRows() {
-        return getMaxRows() > 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean useRow(final long rowNum) {
-        return !useMaxRows() || rowNum <= getMaxRows();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -2607,13 +2405,16 @@ public final class CSVFormat implements Serializable {
      * @throws IllegalArgumentException Throw when any attribute is invalid or inconsistent with other attributes.
      */
     private void validate() throws IllegalArgumentException {
-        if (quoteCharacter != null && contains(delimiter, quoteCharacter.charValue())) { // Explicit (un)boxing is intentional
+        if (quoteCharacter != null && contains(delimiter, quoteCharacter.charValue())) {
+            // Explicit (un)boxing is intentional
             throw new IllegalArgumentException("The quoteChar character and the delimiter cannot be the same ('" + quoteCharacter + "')");
         }
-        if (escapeCharacter != null && contains(delimiter, escapeCharacter.charValue())) { // Explicit (un)boxing is intentional
+        if (escapeCharacter != null && contains(delimiter, escapeCharacter.charValue())) {
+            // Explicit (un)boxing is intentional
             throw new IllegalArgumentException("The escape character and the delimiter cannot be the same ('" + escapeCharacter + "')");
         }
-        if (commentMarker != null && contains(delimiter, commentMarker.charValue())) { // Explicit (un)boxing is intentional
+        if (commentMarker != null && contains(delimiter, commentMarker.charValue())) {
+            // Explicit (un)boxing is intentional
             throw new IllegalArgumentException("The comment start character and the delimiter cannot be the same ('" + commentMarker + "')");
         }
         if (quoteCharacter != null && quoteCharacter.equals(commentMarker)) {
@@ -2634,9 +2435,7 @@ public final class CSVFormat implements Serializable {
                 // Sanitize all empty headers to the empty string "" when checking duplicates
                 final boolean containsHeader = !dupCheckSet.add(blank ? "" : header);
                 if (containsHeader && !(blank && emptyDuplicatesAllowed)) {
-                    throw new IllegalArgumentException(String.format(
-                            "The header contains a duplicate name: \"%s\" in %s. If this is valid then use CSVFormat.Builder.setDuplicateHeaderMode().", header,
-                            Arrays.toString(headers)));
+                    throw new IllegalArgumentException(String.format("The header contains a duplicate name: \"%s\" in %s. If this is valid then use CSVFormat.Builder.setDuplicateHeaderMode().", header, Arrays.toString(headers)));
                 }
             }
         }
@@ -2804,10 +2603,7 @@ public final class CSVFormat implements Serializable {
     @Deprecated
     public CSVFormat withFirstRecordAsHeader() {
         // @formatter:off
-        return builder()
-                .setHeader()
-                .setSkipHeaderRecord(true)
-                .get();
+        return builder().setHeader().setSkipHeaderRecord(true).get();
         // @formatter:on
     }
 
@@ -3203,5 +2999,4 @@ public final class CSVFormat implements Serializable {
     public CSVFormat withTrim(final boolean trim) {
         return builder().setTrim(trim).get();
     }
-
 }

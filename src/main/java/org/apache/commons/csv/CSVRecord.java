@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.csv;
 
 import java.io.Serializable;
@@ -55,20 +54,27 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      */
     private final long bytePosition;
 
-    /** The accumulated comments (if any). */
+    /**
+     * The accumulated comments (if any).
+     */
     private final String comment;
 
-    /** The record number. */
+    /**
+     * The record number.
+     */
     private final long recordNumber;
 
-    /** The values of the record. */
+    /**
+     * The values of the record.
+     */
     private final String[] values;
 
-    /** The parser that originates this record. This is not serialized. */
+    /**
+     * The parser that originates this record. This is not serialized.
+     */
     private final transient CSVParser parser;
 
-    CSVRecord(final CSVParser parser, final String[] values,  final String comment, final long recordNumber,
-            final long characterPosition, final long bytePosition) {
+    CSVRecord(final CSVParser parser, final String[] values, final String comment, final long recordNumber, final long characterPosition, final long bytePosition) {
         this.recordNumber = recordNumber;
         this.values = values != null ? values : Constants.EMPTY_STRING_ARRAY;
         this.parser = parser;
@@ -85,7 +91,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return the String at the given enum String
      */
     public String get(final Enum<?> e) {
-        return get(e == null ? null : e.name());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -96,7 +102,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return the String at the given index
      */
     public String get(final int i) {
-        return values[i];
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -123,23 +129,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @see CSVFormat.Builder#setNullString(String)
      */
     public String get(final String name) {
-        final Map<String, Integer> headerMap = getHeaderMapRaw();
-        if (headerMap == null) {
-            throw new IllegalStateException("No header mapping was specified, the record values can't be accessed by name");
-        }
-        final Integer index = headerMap.get(name);
-        if (index == null) {
-            throw new IllegalArgumentException(String.format("Mapping for %s not found, expected one of %s", name, headerMap.keySet()));
-        }
-        try {
-            return values[index.intValue()]; // Explicit (un)boxing is intentional
-        } catch (final ArrayIndexOutOfBoundsException e) {
-            throw new IllegalArgumentException(
-                    String.format("Index for header '%s' is %d but CSVRecord only has %d values!", name, index, Integer.valueOf(values.length))); // Explicit
-                                                                                                                                                  // (un)boxing
-                                                                                                                                                  // is
-                                                                                                                                                  // intentional
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -149,7 +139,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.13.0
      */
     public long getBytePosition() {
-        return bytePosition;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -159,7 +149,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return the position of this record in the source stream.
      */
     public long getCharacterPosition() {
-        return characterPosition;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -171,7 +161,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return the comment for this record, or null if no comment for this record is available.
      */
     public String getComment() {
-        return comment;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private Map<String, Integer> getHeaderMapRaw() {
@@ -190,7 +180,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.7
      */
     public CSVParser getParser() {
-        return parser;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -205,7 +195,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @see CSVParser#getCurrentLineNumber()
      */
     public long getRecordNumber() {
-        return recordNumber;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -218,7 +208,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.3
      */
     public boolean hasComment() {
-        return comment != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -232,8 +222,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return true of this record is valid, false if not.
      */
     public boolean isConsistent() {
-        final Map<String, Integer> headerMap = getHeaderMapRaw();
-        return headerMap == null || headerMap.size() == values.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -244,8 +233,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return whether a given column is mapped.
      */
     public boolean isMapped(final String name) {
-        final Map<String, Integer> headerMap = getHeaderMapRaw();
-        return headerMap != null && headerMap.containsKey(name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -256,7 +244,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return whether a column with a given index has a value.
      */
     public boolean isSet(final int index) {
-        return 0 <= index && index < values.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -267,7 +255,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return whether a given column is mapped and has a value.
      */
     public boolean isSet(final String name) {
-        return isMapped(name) && getHeaderMapRaw().get(name).intValue() < values.length; // Explicit (un)boxing is intentional
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -277,7 +265,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      */
     @Override
     public Iterator<String> iterator() {
-        return toList().iterator();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -289,15 +277,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.9.0
      */
     public <M extends Map<String, String>> M putIn(final M map) {
-        if (getHeaderMapRaw() == null) {
-            return map;
-        }
-        getHeaderMapRaw().forEach((key, value) -> {
-            if (value < values.length) {
-                map.put(key, values[value]);
-            }
-        });
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -306,7 +286,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return the number of values.
      */
     public int size() {
-        return values.length;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -316,7 +296,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.9.0
      */
     public Stream<String> stream() {
-        return Stream.of(values);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -329,7 +309,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.9.0
      */
     public List<String> toList() {
-        return stream().collect(Collectors.toList());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -343,7 +323,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @return A new Map. The map is empty if the record has no headers.
      */
     public Map<String, String> toMap() {
-        return putIn(new LinkedHashMap<>(values.length));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -354,7 +334,7 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      */
     @Override
     public String toString() {
-        return "CSVRecord [comment='" + comment + "', recordNumber=" + recordNumber + ", values=" + Arrays.toString(values) + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -364,7 +344,6 @@ public final class CSVRecord implements Serializable, Iterable<String> {
      * @since 1.10.0
      */
     public String[] values() {
-        return values;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

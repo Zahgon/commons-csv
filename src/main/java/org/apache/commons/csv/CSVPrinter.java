@@ -16,13 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.csv;
 
 import static org.apache.commons.csv.Constants.CR;
 import static org.apache.commons.csv.Constants.LF;
 import static org.apache.commons.csv.Constants.SP;
-
 import java.io.Closeable;
 import java.io.Flushable;
 import java.io.IOException;
@@ -37,7 +35,6 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
-
 import org.apache.commons.io.function.IOStream;
 
 /**
@@ -79,12 +76,16 @@ import org.apache.commons.io.function.IOStream;
  */
 public final class CSVPrinter implements Flushable, Closeable {
 
-    /** The place that the values get written. */
+    /**
+     * The place that the values get written.
+     */
     private final Appendable appendable;
 
     private final CSVFormat format;
 
-    /** True if we just began a new record. */
+    /**
+     * True if we just began a new record.
+     */
     private boolean newRecord = true;
 
     private long recordCount;
@@ -124,7 +125,7 @@ public final class CSVPrinter implements Flushable, Closeable {
 
     @Override
     public void close() throws IOException {
-        close(false);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -137,12 +138,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      * @see CSVFormat#getAutoFlush()
      */
     public void close(final boolean flush) throws IOException {
-        if (flush || format.getAutoFlush()) {
-            flush();
-        }
-        if (appendable instanceof Closeable) {
-            ((Closeable) appendable).close();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -164,9 +160,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      */
     @Override
     public void flush() throws IOException {
-        if (appendable instanceof Flushable) {
-            ((Flushable) appendable).flush();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,7 +169,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      * @return the target Appendable.
      */
     public Appendable getOut() {
-        return appendable;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -185,7 +179,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      * @since 1.13.0
      */
     public long getRecordCount() {
-        return recordCount;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -197,12 +191,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      */
     public void print(final Object value) throws IOException {
-        lock.lock();
-        try {
-            printRaw(value);
-        } finally {
-            lock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -227,38 +216,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      */
     public void printComment(final String comment) throws IOException {
-        lock.lock();
-        try {
-            if (comment == null || !format.isCommentMarkerSet()) {
-                return;
-            }
-            if (!newRecord) {
-                println();
-            }
-            appendable.append(format.getCommentMarker().charValue()); // Explicit (un)boxing is intentional
-            appendable.append(SP);
-            for (int i = 0; i < comment.length(); i++) {
-                final char c = comment.charAt(i);
-                switch (c) {
-                case CR:
-                    if (i + 1 < comment.length() && comment.charAt(i + 1) == LF) {
-                        i++;
-                    }
-                    // falls-through: break intentionally excluded.
-                case LF:
-                    println();
-                    appendable.append(format.getCommentMarker().charValue()); // Explicit (un)boxing is intentional
-                    appendable.append(SP);
-                    break;
-                default:
-                    appendable.append(c);
-                    break;
-                }
-            }
-            println();
-        } finally {
-            lock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -270,15 +228,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      * @since 1.9.0
      */
     public void printHeaders(final ResultSet resultSet) throws IOException, SQLException {
-        lock.lock();
-        try {
-            try (IOStream<String> stream = IOStream.of(format.builder().setHeader(resultSet).get().getHeader())) {
-                stream.forEachOrdered(this::print);
-            }
-            println();
-        } finally {
-            lock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -288,13 +238,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      */
     public void println() throws IOException {
-        lock.lock();
-        try {
-            format.println(appendable);
-            newRecord = true;
-        } finally {
-            lock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -325,13 +269,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      */
     @SuppressWarnings("resource")
     public void printRecord(final Iterable<?> values) throws IOException {
-        lock.lock();
-        try {
-            IOStream.of(values).forEachOrdered(this::print);
-            endOfRecord();
-        } finally {
-            lock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -348,7 +286,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      */
     public void printRecord(final Object... values) throws IOException {
-        printRecord(Arrays.asList(values));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -365,15 +303,10 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      * @since 1.10.0
      */
-    @SuppressWarnings("resource") // caller closes.
+    // caller closes.
+    @SuppressWarnings("resource")
     public void printRecord(final Stream<?> stream) throws IOException {
-        lock.lock();
-        try {
-            IOStream.adapt(stream).forEachOrdered(stream.isParallel() ? this::printRaw : this::print);
-            endOfRecord();
-        } finally {
-            lock.unlock();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void printRecordObject(final Object value) throws IOException {
@@ -431,7 +364,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      */
     @SuppressWarnings("resource")
     public void printRecords(final Iterable<?> values) throws IOException {
-        printRecords(IOStream.of(values));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -472,7 +405,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      */
     public void printRecords(final Object... values) throws IOException {
-        printRecords(Arrays.asList(values));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -487,29 +420,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      * @throws SQLException Thrown when a database access error occurs.
      */
     public void printRecords(final ResultSet resultSet) throws SQLException, IOException {
-        final int columnCount = resultSet.getMetaData().getColumnCount();
-        while (resultSet.next() && format.useRow(resultSet.getRow())) {
-            lock.lock();
-            try {
-                for (int i = 1; i <= columnCount; i++) {
-                    final Object object = resultSet.getObject(i);
-                    if (object instanceof Clob) {
-                        try (Reader reader = ((Clob) object).getCharacterStream()) {
-                            print(reader);
-                        }
-                    } else if (object instanceof Blob) {
-                        try (InputStream inputStream = ((Blob) object).getBinaryStream()) {
-                            print(inputStream);
-                        }
-                    } else {
-                        print(object);
-                    }
-                }
-                endOfRecord();
-            } finally {
-                lock.unlock();
-            }
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -526,10 +437,7 @@ public final class CSVPrinter implements Flushable, Closeable {
      * @since 1.9.0
      */
     public void printRecords(final ResultSet resultSet, final boolean printHeader) throws SQLException, IOException {
-        if (printHeader) {
-            printHeaders(resultSet);
-        }
-        printRecords(resultSet);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -572,8 +480,9 @@ public final class CSVPrinter implements Flushable, Closeable {
      *             If an I/O error occurs
      * @since 1.10.0
      */
-    @SuppressWarnings({ "resource" }) // Caller closes.
+    // Caller closes.
+    @SuppressWarnings({ "resource" })
     public void printRecords(final Stream<?> values) throws IOException {
-        printRecords(IOStream.adapt(values));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

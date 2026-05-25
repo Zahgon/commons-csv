@@ -16,15 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 package org.apache.commons.csv;
 
 import static org.apache.commons.io.IOUtils.EOF;
-
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.Arrays;
-
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -33,21 +30,34 @@ import org.apache.commons.io.IOUtils;
 final class Lexer implements Closeable {
 
     private static final String CR_STRING = Character.toString(Constants.CR);
+
     private static final String LF_STRING = Character.toString(Constants.LF);
 
     private final char[] delimiter;
+
     private final char[] delimiterBuf;
+
     private final char[] escapeDelimiterBuf;
+
     private final int escape;
+
     private final int quoteChar;
+
     private final int commentStart;
+
     private final boolean ignoreSurroundingSpaces;
+
     private final boolean ignoreEmptyLines;
+
     private final boolean lenientEof;
+
     private final boolean trailingData;
 
-    /** The buffered reader. */
+    /**
+     * The buffered reader.
+     */
     private final ExtendedBufferedReader reader;
+
     private String firstEol;
 
     private boolean isLastTokenDelimiter;
@@ -78,7 +88,8 @@ final class Lexer implements Closeable {
             token.content.append(delimiter);
         } else {
             final int unescaped = readEscape();
-            if (unescaped == EOF) { // unexpected char after escape
+            if (unescaped == EOF) {
+                // unexpected char after escape
                 token.content.append((char) escape).append((char) reader.getLastChar());
             } else {
                 token.content.append((char) unescaped);
@@ -94,7 +105,7 @@ final class Lexer implements Closeable {
      */
     @Override
     public void close() throws IOException {
-        reader.close();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -103,7 +114,7 @@ final class Lexer implements Closeable {
      * @return the number of bytes read.
      */
     long getBytesRead() {
-        return reader.getBytesRead();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -112,7 +123,7 @@ final class Lexer implements Closeable {
      * @return the current character position.
      */
     long getCharacterPosition() {
-        return reader.getPosition();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -121,19 +132,19 @@ final class Lexer implements Closeable {
      * @return the current line number.
      */
     long getCurrentLineNumber() {
-        return reader.getLineNumber();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     String getFirstEol() {
-        return firstEol;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean isClosed() {
-        return reader.isClosed();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     boolean isCommentStart(final int ch) {
-        return ch == commentStart;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -145,23 +156,7 @@ final class Lexer implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     boolean isDelimiter(final int ch) throws IOException {
-        isLastTokenDelimiter = false;
-        if (ch != delimiter[0]) {
-            return false;
-        }
-        if (delimiter.length == 1) {
-            isLastTokenDelimiter = true;
-            return true;
-        }
-        reader.peek(delimiterBuf);
-        for (int i = 0; i < delimiterBuf.length; i++) {
-            if (delimiterBuf[i] != delimiter[i + 1]) {
-                return false;
-            }
-        }
-        final int count = reader.read(delimiterBuf, 0, delimiterBuf.length);
-        isLastTokenDelimiter = count != EOF;
-        return isLastTokenDelimiter;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -170,7 +165,7 @@ final class Lexer implements Closeable {
      * @return true if the given character indicates the end of the file.
      */
     boolean isEndOfFile(final int ch) {
-        return ch == EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -179,7 +174,7 @@ final class Lexer implements Closeable {
      * @return true if the given character is the escape character.
      */
     boolean isEscape(final int ch) {
-        return ch == escape;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -191,17 +186,7 @@ final class Lexer implements Closeable {
      * @throws IOException If an I/O error occurs.
      */
     boolean isEscapeDelimiter() throws IOException {
-        reader.peek(escapeDelimiterBuf);
-        if (escapeDelimiterBuf[0] != delimiter[0]) {
-            return false;
-        }
-        for (int i = 1; i < delimiter.length; i++) {
-            if (escapeDelimiterBuf[2 * i] != delimiter[i] || escapeDelimiterBuf[2 * i - 1] != escape) {
-                return false;
-            }
-        }
-        final int count = reader.read(escapeDelimiterBuf, 0, escapeDelimiterBuf.length);
-        return count != EOF;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private boolean isMetaChar(final int ch) {
@@ -209,7 +194,7 @@ final class Lexer implements Closeable {
     }
 
     boolean isQuoteChar(final int ch) {
-        return ch == quoteChar;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,7 +204,7 @@ final class Lexer implements Closeable {
      * @return true if the character is at the start of a line.
      */
     boolean isStartOfLine(final int ch) {
-        return ch == Constants.LF || ch == Constants.CR || ch == Constants.UNDEFINED;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -234,82 +219,12 @@ final class Lexer implements Closeable {
      * @throws CSVException Thrown on invalid input.
      */
     Token nextToken(final Token token) throws IOException {
-        // Get the last read char (required for empty line detection)
-        int lastChar = reader.getLastChar();
-        // read the next char and set eol
-        int c = reader.read();
-        // Note: The following call will swallow LF if c == CR. But we don't need to know if the last char was CR or LF - they are equivalent here.
-        boolean eol = readEndOfLine(c);
-        // empty line detection: eol AND (last char was EOL or beginning)
-        if (ignoreEmptyLines) {
-            while (eol && isStartOfLine(lastChar)) {
-                // Go on char ahead ...
-                lastChar = c;
-                c = reader.read();
-                eol = readEndOfLine(c);
-                // reached the end of the file without any content (empty line at the end)
-                if (isEndOfFile(c)) {
-                    token.type = Token.Type.EOF;
-                    // don't set token.isReady here because no content
-                    return token;
-                }
-            }
-        }
-        // Did we reach EOF during the last iteration already? EOF
-        if (isEndOfFile(lastChar) || !isLastTokenDelimiter && isEndOfFile(c)) {
-            token.type = Token.Type.EOF;
-            // don't set token.isReady here because no content
-            return token;
-        }
-        if (isStartOfLine(lastChar) && isCommentStart(c)) {
-            final String line = reader.readLine();
-            if (line == null) {
-                token.type = Token.Type.EOF;
-                // don't set token.isReady here because no content
-                return token;
-            }
-            final String comment = line.trim();
-            token.content.append(comment);
-            token.type = Token.Type.COMMENT;
-            return token;
-        }
-        Arrays.fill(delimiterBuf, '\0');
-        // Important: make sure a new char gets consumed in each iteration
-        while (token.type == Token.Type.INVALID) {
-            // ignore whitespaces at beginning of a token
-            if (ignoreSurroundingSpaces) {
-                while (Character.isWhitespace((char) c) && !isDelimiter(c) && !eol) {
-                    c = reader.read();
-                    eol = readEndOfLine(c);
-                }
-            }
-            // ok, start of token reached: encapsulated, or token
-            if (isDelimiter(c)) {
-                // empty token return TOKEN("")
-                token.type = Token.Type.TOKEN;
-            } else if (eol) {
-                // empty token return EORECORD("")
-                // noop: token.content.append("");
-                token.type = Token.Type.EORECORD;
-            } else if (isQuoteChar(c)) {
-                // consume encapsulated token
-                parseEncapsulatedToken(token);
-            } else if (isEndOfFile(c)) {
-                // end of file return EOF()
-                // noop: token.content.append("");
-                token.type = Token.Type.EOF;
-                token.isReady = true; // there is data at EOF
-            } else {
-                // next token must be a simple token
-                // add removed blanks when not ignoring whitespace chars...
-                parseSimpleToken(token, c);
-            }
-        }
-        return token;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private int nullToDisabled(final Character c) {
-        return c == null ? Constants.UNDEFINED : c.charValue(); // Explicit unboxing
+        // Explicit unboxing
+        return c == null ? Constants.UNDEFINED : c.charValue();
     }
 
     /**
@@ -357,7 +272,8 @@ final class Lexer implements Closeable {
                         }
                         if (isEndOfFile(c)) {
                             token.type = Token.Type.EOF;
-                            token.isReady = true; // There is data at EOF
+                            // There is data at EOF
+                            token.isReady = true;
                             return token;
                         }
                         if (readEndOfLine(c)) {
@@ -368,8 +284,7 @@ final class Lexer implements Closeable {
                             token.content.append((char) c);
                         } else if (!Character.isWhitespace((char) c)) {
                             // error invalid char between token and next delimiter
-                            throw new CSVException("Invalid character between encapsulated token and delimiter at line: %,d, position: %,d",
-                                    getCurrentLineNumber(), getCharacterPosition());
+                            throw new CSVException("Invalid character between encapsulated token and delimiter at line: %,d, position: %,d", getCurrentLineNumber(), getCharacterPosition());
                         }
                     }
                 }
@@ -378,7 +293,8 @@ final class Lexer implements Closeable {
             } else if (isEndOfFile(c)) {
                 if (lenientEof) {
                     token.type = Token.Type.EOF;
-                    token.isReady = true; // There is data at EOF
+                    // There is data at EOF
+                    token.isReady = true;
                     return token;
                 }
                 // error condition (end of file before end of token)
@@ -418,7 +334,8 @@ final class Lexer implements Closeable {
             }
             if (isEndOfFile(cur)) {
                 token.type = Token.Type.EOF;
-                token.isReady = true; // There is data at EOF
+                // There is data at EOF
+                token.isReady = true;
                 break;
             }
             if (isDelimiter(cur)) {
@@ -431,13 +348,12 @@ final class Lexer implements Closeable {
             } else {
                 token.content.append((char) cur);
             }
-            cur = reader.read(); // continue
+            // continue
+            cur = reader.read();
         }
-
         if (ignoreSurroundingSpaces) {
             trimTrailingSpaces(token.content);
         }
-
         return token;
     }
 
@@ -447,26 +363,7 @@ final class Lexer implements Closeable {
      * @return true if the given or next character is a line-terminator.
      */
     boolean readEndOfLine(final int ch) throws IOException {
-        // check if we have \r\n...
-        int cur = ch;
-        if (cur == Constants.CR && reader.peek() == Constants.LF) {
-            // note: does not change ch outside of this method!
-            cur = reader.read();
-            // Save the EOL state
-            if (firstEol == null) {
-                this.firstEol = Constants.CRLF;
-            }
-        }
-        // save EOL state here.
-        if (firstEol == null) {
-            if (cur == Constants.LF) {
-                this.firstEol = LF_STRING;
-            } else if (cur == Constants.CR) {
-                this.firstEol = CR_STRING;
-            }
-        }
-
-        return cur == Constants.LF || cur == Constants.CR;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     // TODO escape handling needs more work
@@ -479,44 +376,10 @@ final class Lexer implements Closeable {
      * @throws CSVException Thrown on invalid input.
      */
     int readEscape() throws IOException {
-        // the escape char has just been read (normally a backslash)
-        final int ch = reader.read();
-        switch (ch) {
-        case 'r':
-            return Constants.CR;
-        case 'n':
-            return Constants.LF;
-        case 't':
-            return Constants.TAB;
-        case 'b':
-            return Constants.BACKSPACE;
-        case 'f':
-            return Constants.FF;
-        case Constants.CR:
-        case Constants.LF:
-        case Constants.FF: // TODO is this correct?
-        case Constants.TAB: // TODO is this correct? Do tabs need to be escaped?
-        case Constants.BACKSPACE: // TODO is this correct?
-            return ch;
-        case EOF:
-            throw new CSVException("EOF while processing escape sequence");
-        default:
-            // Now check for meta-characters
-            if (isMetaChar(ch)) {
-                return ch;
-            }
-            // indicate unexpected char - available from in.getLastChar()
-            return EOF;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     void trimTrailingSpaces(final StringBuilder buffer) {
-        int length = buffer.length();
-        while (length > 0 && Character.isWhitespace(buffer.charAt(length - 1))) {
-            length--;
-        }
-        if (length != buffer.length()) {
-            buffer.setLength(length);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
